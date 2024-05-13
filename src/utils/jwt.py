@@ -3,6 +3,7 @@ import jwt
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from datetime import datetime, timedelta
+from icecream import ic
 
 
 class AuthHandler:
@@ -11,7 +12,7 @@ class AuthHandler:
     algorithm = os.getenv('ALGORITHM')
     security = HTTPBearer()
 
-    def endcode_token(self, email):
+    def encode_token(self, email):
         payload = {
             "exp": datetime.utcnow() + timedelta(minutes=self.expire_time_duration_min),
             "iat": datetime.utcnow(),
@@ -20,8 +21,11 @@ class AuthHandler:
         return jwt.encode(payload, self.secret, self.algorithm)
 
     def decode_token(self, token):
+        ic(token)
+
         try:
             payload = jwt.decode(token, self.secret, algorithms=self.algorithm)
+            ic(payload)
             return payload['sub']
         except jwt.ExpiredSignatureError:
             raise HTTPException(
@@ -32,4 +36,5 @@ class AuthHandler:
             return e
 
     def auth_wrapper(self, auth: HTTPAuthorizationCredentials = Security(security)):
+        ic(auth)
         return self.decode_token(auth.credentials)

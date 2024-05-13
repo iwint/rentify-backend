@@ -1,7 +1,16 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse, RedirectResponse
+from pydantic import BaseSettings
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, RedirectResponse
 from src.routes.v1.auth import router as auth_router
+from src.routes.v1.listing import router as listing_router
+
+
+class Settings(BaseSettings):
+    openapi_url: str = "/openapi.json"
+
+
+settings = Settings()
 
 app = FastAPI()
 
@@ -13,7 +22,9 @@ app.add_middleware(CORSMiddleware,
                    allow_headers=["*"])
 
 app.include_router(auth_router, prefix="/api/v1/auth",
-                   tags=["auth"], responses={404: {"Ooops!": "Not found"}})
+                   tags=["Auth"], responses={404: {"Ooops!": "Not found"}})
+app.include_router(listing_router, prefix="/api/v1/listing",
+                   tags=["Listing"], responses={404: {"Ooops!": "Not found"}})
 
 
 @app.get("/", response_class=RedirectResponse)

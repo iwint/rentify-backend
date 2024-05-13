@@ -54,7 +54,7 @@ class AuthService:
                 user_details['listings'] = []
                 user_details['favorite_ids'] = []
                 user_details['accounts'] = []
-                user_details['token'] = auth_handler.endcode_token(
+                user_details['token'] = auth_handler.encode_token(
                     user['email'])
                 user_collection.insert_one(user_details)
                 return user_details
