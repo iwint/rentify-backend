@@ -61,3 +61,9 @@ class AuthService:
         except KeyError:
             raise HTTPException(
                 status_code=400, detail="Invalid email or password")
+
+    def get_user(self, user_id):
+        ic(user_id)
+        user = user_collection.find_one({"email": user_id})
+        ic(user)
+        return user

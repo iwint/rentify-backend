@@ -15,6 +15,6 @@ def create_listing(listing: Listing = Body(...), user_id=Depends(auth_handler.au
     return listing_controller.create_listing(listing)
 
 
-@router.get("/", response_description="Get all listings", status_code=200, response_model=list[Listing])
+@router.get("/",  response_description="Get all listings", status_code=200)
 def get_all_listings():
     return listing_controller.get_all_listings()

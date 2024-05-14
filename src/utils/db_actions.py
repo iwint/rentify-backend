@@ -24,9 +24,10 @@ class DBActions:
 
     def get_all_data_from_db(self, collection_name, error_message):
         try:
-            data = collections[collection_name].find({}, {"_id": 0})
-            ic(data)
+            if data := collections[collection_name].find({}, {"_id": 0}):
+                data = [i for i in data]
             return data
+
         except:
             raise HTTPException(status_code=500, detail=error_message)
 

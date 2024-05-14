@@ -16,3 +16,7 @@ class AuthController:
     def register(self, user: dict):
         ic(user)
         return auth_service.sign_up(user)
+
+    def get_user(self, user_id: str):
+        ic(user_id)
+        return auth_service.get_user(user_id)
