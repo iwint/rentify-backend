@@ -3,7 +3,7 @@ from pydantic import BaseSettings
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 from src.routes.v1.auth import router as auth_router
-from src.routes.v1.listing import router as listing_router
+from src.routes.v1.listings import router as listings_router
 
 
 class Settings(BaseSettings):
@@ -22,7 +22,7 @@ app.add_middleware(CORSMiddleware,
 
 app.include_router(auth_router, prefix="/api/v1/auth",
                    tags=["Auth"], responses={404: {"Ooops!": "Not found"}})
-app.include_router(listing_router, prefix="/api/v1/listing",
+app.include_router(listings_router, prefix="/api/v1/listings",
                    tags=["Listing"], responses={404: {"Ooops!": "Not found"}})
 
 
