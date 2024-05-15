@@ -21,6 +21,4 @@ async def register(User: SignUpRequest):
     return auth_controller.register(user=user)
 
 
-@router.get("/user", response_description="Get user", status_code=status.HTTP_200_OK, response_model=AuthResponse)
-async def get_user(user_id=Depends(auth_handler.auth_wrapper)):
-    return auth_controller.get_user(user_id=user_id)
+
