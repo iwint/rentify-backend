@@ -15,8 +15,10 @@ class DBActions:
             raise HTTPException(status_code=500, detail=error_message)
 
     def get_data_from_db(self, collection_name, id_dict, error_message):
+        ic(id_dict)
         try:
-            data = collections[collection_name].find_one(id_dict, {"_id": 0})
+            data = collections[collection_name].find_one(
+                id_dict)
             ic(data)
             return data
         except:

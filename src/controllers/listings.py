@@ -12,3 +12,6 @@ class ListingController:
 
     def get_all_listings(self):
         return listing_service.get_all_listings()
+
+    def get_listing_by_id(self, listing_id: str):
+        return listing_service.get_listing_by_id(listing_id)
