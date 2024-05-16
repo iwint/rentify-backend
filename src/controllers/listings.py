@@ -7,7 +7,7 @@ listing_service = ListingService()
 
 class ListingController:
 
-    def create_listing(self, listing: Listing):
+    def create_listing(self, listing):
         return listing_service.create_listing(listing)
 
     def get_all_listings(self):

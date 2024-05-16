@@ -8,7 +8,7 @@ from icecream import ic
 
 class AuthHandler:
     secret = os.getenv('SECRET_KEY')
-    expire_time_duration_min = 1440
+    expire_time_duration_min = 10000
     algorithm = os.getenv('ALGORITHM')
     security = HTTPBearer()
 

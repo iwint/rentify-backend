@@ -10,7 +10,7 @@ class DBActions:
         try:
             payload["created_at"] = datetime.now()
             collections[collection_name].insert_one(payload)
-            return True
+            return payload
         except:
             raise HTTPException(status_code=500, detail=error_message)
 

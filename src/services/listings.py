@@ -9,14 +9,9 @@ db_actions = DBActions()
 
 class ListingService:
 
-    def create_listing(self, listing: Listing):
-
-        listing_payload = listing.dict()
-        listing_payload['listing_id'] = uuid.uuid4()
-
-        db_actions.add_data_to_db(
-            'listings', listing_payload, "Error creating listing")
-        return db_actions.get_data_from_db('listings', listing.dict(), "Error retrieving listing")
+    def create_listing(self, listing):
+        listing['listing_id'] = str(uuid.uuid4())
+        return db_actions.add_data_to_db('listings', listing, "Error creating listing")
 
     def get_all_listings(self):
         return db_actions.get_all_data_from_db('listings', "Error retrieving listings")

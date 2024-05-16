@@ -9,9 +9,8 @@ auth_handler = AuthHandler()
 listing_controller = ListingController()
 
 
-@router.post("/")
-def create_listing(listing: Listing = Body(...), user_id=Depends(auth_handler.auth_wrapper)):
-    ic(user_id)
+@router.post("/", response_model=Listing, response_description="Create a new listing", status_code=201)
+def create_listing(listing=Body(...), user_id=Depends(auth_handler.auth_wrapper)):
     return listing_controller.create_listing(listing)
 
 

@@ -4,7 +4,7 @@ from typing import List, Optional, Dict
 
 
 class Listing(BaseModel):
-    listing_id: str = Field(default_factory=uuid.uuid4, alias="listing_id")
+    listing_id: str = Field(default_factory=uuid.uuid4, alias="listing_id",)
     category: str = Field(...)
     location: Dict = Field(...)
     guest_count: int = Field(...)
