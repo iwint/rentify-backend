@@ -1,8 +1,10 @@
-from src.utils.db_actions import DBActions
-from icecream import ic
-from src.models.listings import Listing
-from fastapi import HTTPException, status
 import uuid
+
+from fastapi import HTTPException, status
+from icecream import ic
+
+from src.models.listings import Listing
+from src.utils.db_actions import DBActions
 
 db_actions = DBActions()
 
@@ -20,6 +22,9 @@ class ListingService:
         ic(listing_id)
         listing = db_actions.get_data_from_db(
             'listings', {"listing_id": listing_id}, "Error retrieving listing")
+        user = db_actions.get_data_from_db(
+            'users', {"user_id": listing['user_id']}, "Error retrieving user")
+        listing['user'] = user
         ic(listing)
         try:
             if listing:

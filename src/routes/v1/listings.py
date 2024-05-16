@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Body, status
 from src.utils.jwt import AuthHandler
-from src.models.listings import Listing
+from src.models.listings import Listing, SingleListingResponse
 from src.controllers.listings import ListingController
 from icecream import ic
 
@@ -19,7 +19,7 @@ def get_all_listings():
     return listing_controller.get_all_listings()
 
 
-@router.get("/{listing_id}", response_description="Get a listing by id", status_code=status.HTTP_200_OK, response_model=Listing)
+@router.get("/{listing_id}", response_description="Get a listing by id", status_code=status.HTTP_200_OK, response_model=SingleListingResponse)
 def get_listing_by_id(listing_id: str):
     ic(listing_id)
     return listing_controller.get_listing_by_id(listing_id)

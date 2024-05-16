@@ -1,6 +1,6 @@
-from pydantic import BaseModel, Field
 import uuid
-from typing import List, Optional, Dict
+from typing import Dict
+from pydantic import BaseModel, Field
 
 
 class Listing(BaseModel):
@@ -15,3 +15,13 @@ class Listing(BaseModel):
     title: str = Field(...)
     description: str = Field(...)
     user_id: str = Field(...)
+
+
+class ListingUserDetails(BaseModel):
+    name: str = Field(...)
+    email: str = Field(...)
+    user_id: str = Field(...)
+
+
+class SingleListingResponse(Listing):
+    user: ListingUserDetails = Field(...)
