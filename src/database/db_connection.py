@@ -35,9 +35,10 @@ db_client = db_client.get_database(DB_NAME)
 
 user_collection = db_client.get_collection('users')
 listing_collection = db_client.get_collection('listings')
-
+reservation_collection = db_client.get_collection('reservations')
 
 collections = {
     "users": user_collection,
-    "listings": listing_collection
+    "listings": listing_collection,
+    "reservations": reservation_collection
 }

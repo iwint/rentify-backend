@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse, RedirectResponse
 from src.routes.v1.auth import router as auth_router
 from src.routes.v1.listings import router as listings_router
 from src.routes.v1.user import router as user_router
+from src.routes.v1.reservation import router as reservation_router
 
 
 class Settings(BaseSettings):
@@ -27,6 +28,8 @@ app.include_router(listings_router, prefix="/api/v1/listings",
                    tags=["Listing"], responses={404: {"Ooops!": "Not found"}})
 app.include_router(user_router, prefix="/api/v1/user",
                    tags=["User"], responses={404: {"Ooops!": "Not found"}})
+app.include_router(reservation_router, prefix="/api/v1/reservations",
+                   tags=["Reservation"], responses={404: {"Ooops!": "Not found"}})
 
 
 @app.get("/", response_class=RedirectResponse)
