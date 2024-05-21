@@ -2,6 +2,7 @@ from fastapi import APIRouter, status, Body, Depends
 from src.utils.jwt import AuthHandler
 from src.models.reservation import Reservation
 from src.controllers.reservation import ReservationController
+from icecream import ic
 
 router = APIRouter()
 auth_handler = AuthHandler()
