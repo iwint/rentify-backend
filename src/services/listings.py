@@ -16,7 +16,7 @@ class ListingService:
         return db_actions.add_data_to_db('listings', listing, "Error creating listing")
 
     def get_all_listings(self):
-        return db_actions.get_all_data_from_db('listings', "Error retrieving listings")
+        return db_actions.get_all_data_from_db('listings', {}, "Error retrieving listings")
 
     def get_listing_by_id(self, listing_id: str):
         ic(listing_id)

@@ -10,3 +10,9 @@ class UserController:
 
     def update_favorite_id(self, user_id: str, listing_id: str):
         return user_service.update_favourite_id(user_id, listing_id)
+
+    def get_all_favourites(self, email):
+        return user_service.get_all_favourites(email)
+
+    def get_all_properties(self, email):
+        return user_service.get_all_properties(email)

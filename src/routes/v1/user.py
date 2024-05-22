@@ -17,3 +17,13 @@ async def get_user(user_id=Depends(auth_handler.auth_wrapper)):
 @router.put("/favorite/{listing_id}", response_description="Update favorite", status_code=status.HTTP_200_OK)
 async def update_favorite(listing_id: str, user_id=Depends(auth_handler.auth_wrapper)):
     return user_controller.update_favorite_id(user_id=user_id, listing_id=listing_id)
+
+
+@router.get('/favourites', response_description="Get all favourite listings", status_code=status.HTTP_200_OK)
+async def get_all_favourites(email=Depends(auth_handler.auth_wrapper)):
+    return user_controller.get_all_favourites(email)
+
+
+@router.get('/properties', response_description="Get all favourite listings", status_code=status.HTTP_200_OK)
+async def get_all_properties(email=Depends(auth_handler.auth_wrapper)):
+    return user_controller.get_all_properties(email)

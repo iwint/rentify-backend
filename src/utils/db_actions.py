@@ -13,20 +13,21 @@ class DBActions:
             return payload
         except:
             raise HTTPException(status_code=500, detail=error_message)
+    
 
     def get_data_from_db(self, collection_name, id_dict, error_message):
         ic(id_dict)
         try:
             data = collections[collection_name].find_one(
-                id_dict)
+                id_dict, {"_id": 0})
             ic(data)
             return data
         except:
             raise HTTPException(status_code=500, detail=error_message)
 
-    def get_all_data_from_db(self, collection_name, error_message):
+    def get_all_data_from_db(self, collection_name, id_dict , error_message):
         try:
-            if data := collections[collection_name].find({}, {"_id": 0}):
+            if data := collections[collection_name].find(id_dict if id_dict else {}, {"_id": 0}):
                 data = [i for i in data]
             return data
 

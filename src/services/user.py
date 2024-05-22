@@ -1,6 +1,10 @@
 from icecream import ic
 from src.database.db_connection import user_collection
 from fastapi import HTTPException, status
+from src.utils.db_actions import DBActions
+
+
+db_actions = DBActions()
 
 
 class UserService:
@@ -30,3 +34,34 @@ class UserService:
             user_collection.update_one(
                 {"email": email}, {"$push": {"favorite_ids": listing_id}})
             return {"message": "Listing added to favorites"}
+
+    def get_all_favourites(self, email):
+        user = user_collection.find_one({"email": email})
+        if user:
+            favourite_ids = user['favorite_ids']
+            favourites = []
+
+            for id in favourite_ids:
+
+                listing = db_actions.get_data_from_db(
+                    'listings', {'listing_id': id}, 'Error in getting favourites')
+                favourites.append(listing)
+
+            return favourites
+        else:
+            raise HTTPException(
+                status_code='404', detail='User not found')
+
+    def get_all_properties(self, email):
+        user = user_collection.find_one({"email": email})
+        if user:
+            properties = []
+            listings = db_actions.get_all_data_from_db(
+                'listings', {}, 'Error in getting properties')
+            for listing in listings:
+                if listing['user_id'] == user['user_id']:
+                    properties.append(listing)
+            return properties
+        else:
+            raise HTTPException(
+                status_code='404', detail='User not found')
