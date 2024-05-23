@@ -10,6 +10,7 @@ class SignInRequest(BaseModel):
 
 class SignUpRequest(SignInRequest):
     name: str = Field(...)
+    role: str = Field(...)
 
 
 class AuthResponse(BaseModel):
@@ -21,3 +22,4 @@ class AuthResponse(BaseModel):
     listings: List = Field(...),
     favorite_ids: List = Field(...),
     accounts: List = Field(...),
+    role: str = Field(...)

@@ -2,7 +2,7 @@ import uuid
 
 from fastapi import HTTPException, status
 from icecream import ic
-
+from datetime import datetime
 from src.models.listings import Listing
 from src.utils.db_actions import DBActions
 
@@ -35,3 +35,27 @@ class ListingService:
         except Exception as e:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Listing not found")
+
+    def update_listing(self, listing_id: str, updated_listing):
+        ic(listing_id)
+        updated_listing['updated_at'] = datetime.now()
+        db_actions.update_data_in_db(
+            'listings', {'listing_id': listing_id}, updated_listing, "Error updating listing")
+        user = db_actions.get_data_from_db(
+            'users', {"user_id": updated_listing['user_id']}, "Error retrieving user")
+        updated_listing['user'] = user
+        ic(updated_listing)
+        try:
+            if updated_listing:
+                return updated_listing
+            else:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND, detail="Listing not found")
+        except Exception as e:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Listing not found")
+
+    def delete_listing(self, listing_id: str):
+        db_actions.delete_data_from_db(
+            'listings', {'listing_id': listing_id}, "Error deleting listing")
+        return {"message": "Listing deleted successfully"}

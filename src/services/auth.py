@@ -25,7 +25,8 @@ class AuthService:
                     "listings": registered_user['listings'],
                     "favorite_ids": registered_user['favorite_ids'],
                     "accounts": registered_user['accounts'],
-                    "token": registered_user['token']
+                    "token": registered_user['token'],
+                    "role": registered_user['role']
                 }
             else:
                 raise HTTPException(
@@ -49,6 +50,7 @@ class AuthService:
                 user_details['user_id'] = user_id
                 user_details['name'] = user['name']
                 user_details['email'] = user['email']
+                user_details['role'] = user['role']
                 user_details['password'] = hashed_password
                 user_details['reservations'] = []
                 user_details['listings'] = []

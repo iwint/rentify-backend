@@ -15,3 +15,9 @@ class ListingController:
 
     def get_listing_by_id(self, listing_id: str):
         return listing_service.get_listing_by_id(listing_id)
+
+    def update_listing(self, listing_id: str, updated_listing: dict):
+        return listing_service.update_listing(listing_id, updated_listing)
+
+    def delete_listing(self, listing_id: str):
+        return listing_service.delete_listing(listing_id)

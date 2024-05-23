@@ -23,3 +23,14 @@ def get_all_listings():
 def get_listing_by_id(listing_id: str):
     ic(listing_id)
     return listing_controller.get_listing_by_id(listing_id)
+
+
+@router.put("/{listing_id}", response_description="Update a listing", status_code=status.HTTP_200_OK, response_model=SingleListingResponse)
+def update_listing(listing_id: str, updated_listing=Body(...)):
+    ic(listing_id)
+    return listing_controller.update_listing(listing_id, updated_listing)
+
+
+@router.delete('/{listing_id}', response_description="Delete a listing", status_code=status.HTTP_200_OK)
+def delete_listing(listing_id: str):
+    return listing_controller.delete_listing(listing_id)
