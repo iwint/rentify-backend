@@ -34,4 +34,7 @@ app.include_router(reservation_router, prefix="/api/v1/reservations",
 
 @app.get("/", response_class=RedirectResponse)
 def redirect_to_docs():
-    return "/docs"
+    try:
+        return "/docs"
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)

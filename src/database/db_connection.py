@@ -18,9 +18,8 @@ connection_string = MONGO_URI
 def check_server_connection(client):
     try:
         client.server_info()
-
     except pymongo.errors.ServerSelectionTimeoutError as e:
-        ic("Server is down or unreachable")
+        print("Failed to retrieve server information. MongoDB connection may not be alive.")
     finally:
         client.close()
 
