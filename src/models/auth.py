@@ -1,25 +1,26 @@
 import uuid
-from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List
+
+from pydantic import BaseModel
 
 
 class SignInRequest(BaseModel):
-    email: str = Field(...)
-    password: str = Field(...)
+    email: str
+    password: str
 
 
 class SignUpRequest(SignInRequest):
-    name: str = Field(...)
-    role: str = Field(...)
+    name: str
+    role: str
 
 
 class AuthResponse(BaseModel):
-    token: str = Field(...)
-    user_id: str = Field(default_factory=uuid.uuid4, alias="user_id")
-    name: str = Field(...)
-    email: str = Field(...)
-    reservations: List = Field(...),
-    listings: List = Field(...),
-    favorite_ids: List = Field(...),
-    accounts: List = Field(...),
-    role: str = Field(...)
+    token: str
+    user_id: str
+    name: str
+    email: str
+    reservations: List
+    listings: List
+    favorite_ids: List
+    accounts: List
+    role: str

@@ -9,10 +9,10 @@ MONGO_USER = os.getenv('MONGO_USER')
 MONGO_PASSWORD = os.getenv('MONGO_PASSWORD')
 DB_NAME = os.getenv('DB_NAME')
 
-connection_string = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@{
-    MONGO_URI}/?retryWrites=true&w=majority&appName={DB_NAME}"
+# connection_string = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@{
+#     MONGO_URI}/?retryWrites=true&w=majority&appName={DB_NAME}"
 
-# connection_string = "mongodb://localhost:27017/"
+connection_string = "mongodb://localhost:27017/"
 
 
 def check_server_connection(client):

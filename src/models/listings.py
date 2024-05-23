@@ -4,17 +4,17 @@ from pydantic import BaseModel, Field
 
 
 class Listing(BaseModel):
-    listing_id: str = Field(default_factory=uuid.uuid4, alias="listing_id",)
-    category: str = Field(...)
-    location: Dict = Field(...)
-    guest_count: int = Field(...)
-    room_count: int = Field(...)
-    bathroom_count: int = Field(...)
-    image_src: str = Field(...)
-    price: str = Field(...)
-    title: str = Field(...)
-    description: str = Field(...)
-    user_id: str = Field(...)
+    listing_id: str
+    category: str
+    location: Dict
+    guest_count: int
+    room_count: int
+    bathroom_count: int
+    image_src: str
+    price: str
+    title: str
+    description: str
+    user_id: str
 
 
 class ListingUserDetails(BaseModel):

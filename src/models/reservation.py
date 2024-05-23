@@ -3,10 +3,9 @@ import uuid
 
 
 class Reservation(BaseModel):
-    reservation_id: str = Field(
-        default_factory=uuid.uuid4, alias="reservation_id")
-    listing_id: str = Field(...)
-    user_id: str = Field(...)
-    start_date: str = Field(...)
-    end_date: str = Field(...)
-    total_price: float = Field(...)
+    reservation_id: str
+    listing_id: str
+    user_id: str
+    start_date: str
+    end_date: str
+    total_price: float
