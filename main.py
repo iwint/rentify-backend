@@ -8,12 +8,6 @@ from src.routes.v1.user import router as user_router
 from src.routes.v1.reservation import router as reservation_router
 
 
-class Settings(BaseSettings):
-    openapi_url: str = "/openapi.json"
-
-
-settings = Settings()
-
 app = FastAPI()
 
 app.add_middleware(CORSMiddleware,
