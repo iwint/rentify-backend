@@ -17,17 +17,13 @@ connection_string = MONGO_URI
 
 def check_server_connection(client):
     try:
-        server_info = client.server_info()
-        print("Server Information:")
-        for key, value in server_info.items():
-            print(f"{key}: {value}")
+        client.server_info()
+
     except pymongo.errors.ServerSelectionTimeoutError as e:
         ic("Server is down or unreachable")
     finally:
         client.close()
 
-
-ic(connection_string)
 
 db_client = pymongo.MongoClient(connection_string)
 check_server_connection(db_client)
