@@ -33,5 +33,5 @@ app.include_router(reservation_router, prefix="/api/v1/reservations",
 
 
 @app.get("/", response_class=RedirectResponse)
-async def redirect_to_docs():
+def redirect_to_docs():
     return "/docs"
