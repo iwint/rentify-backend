@@ -13,8 +13,10 @@ class AuthService:
     def sign_in(self, user):
         registered_user = user_collection.find_one({"email": user['email']})
         ic(registered_user)
-        is_verified = password_handler.check_password(
-            user['password'], registered_user['password'])
+        if registered_user:
+            is_verified = password_handler.check_password(
+                user['password'], registered_user['password'])
+
         try:
             if (registered_user and is_verified):
                 return {

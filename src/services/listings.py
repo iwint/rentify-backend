@@ -24,6 +24,13 @@ class ListingService:
             'listings', {"listing_id": listing_id}, "Error retrieving listing")
         user = db_actions.get_data_from_db(
             'users', {"user_id": listing['user_id']}, "Error retrieving user")
+        ic('User', user)
+        if user is None:
+            user = {
+                "name": "admin",
+                "email": "unknown",
+                "user_id": "unknown"
+            }
         listing['user'] = user
         ic(listing)
         try:

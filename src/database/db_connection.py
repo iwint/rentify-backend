@@ -26,6 +26,7 @@ def check_server_connection(client):
 
 db_client = pymongo.MongoClient(connection_string)
 check_server_connection(db_client)
+ic(DB_NAME)
 db_client = db_client.get_database(DB_NAME)
 
 user_collection = db_client.get_collection('users')
