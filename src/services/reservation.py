@@ -42,7 +42,7 @@ class ReservationService:
                 status_code=400, detail="Invalid search criteria")
 
     def get_all_reservations(self):
-        return db_actions.get_all_data_from_db('reservations', "Error retrieving reservations")
+        return db_actions.get_all_data_from_db('reservations', None, "Error retrieving reservations")
 
     def delete_reservation(self, reservation_id):
         return db_actions.delete_data_from_db('reservations', {"reservation_id": reservation_id}, "Error deleting reservation")

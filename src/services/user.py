@@ -57,11 +57,9 @@ class UserService:
         if user:
             properties = []
             listings = db_actions.get_all_data_from_db(
-                'listings', {}, 'Error in getting properties')
-            for listing in listings:
-                if listing['user_id'] == user['user_id']:
-                    properties.append(listing)
-            return properties
+                'listings', {'user_id': user['user_id']}, 'Error in getting properties')
+
+            return listings
         else:
             raise HTTPException(
                 status_code='404', detail='User not found')
